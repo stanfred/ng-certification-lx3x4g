@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="well">
+    <h2>Enter a zipcode:</h2>
+    <input
+      class="form-control"
+      placeholder="Zipcode"
+      type="text"
+      id="addLocation"
+      [(ngModel)]="zipCode"
+      (input)="onInput()"
+    />
+    <span class="help-block" *ngIf="validZipCode" style="color:red"
+      >Please Enter a Valid ZipCode</span
+    >
+    <br />
+    <button
+      class="btn btn-primary"
+      id="addLocationBtn"
+      (click)="onAddZipCode()"
+    >
+      Add location
+    </button>
+  </div>
+  <div>
+    <div class="well flex" *ngFor="let myWeather of weatherDataList">
+      <div>
+        <h3>{{ myWeather.cityName }} ({{ myWeather.zipCode }})</h3>
+        <h4>Current conditions: {{ myWeather.weatherKind }}</h4>
+        <h4>Temperatures today:</h4>
+        <p>
+          Current - {{ myWeather.temp }} - Max {{ myWeather.tempMax }} - Min
+          {{ myWeather.tempMin }}
+        </p>
+        <p>
+          <a [routerLink]="['/forecast', myWeather.zipCode]"
+            >Show 5-day forecast for {{ myWeather.cityName }}</a
+          >
+        </p>
+      </div>
+      <div>
+        <span class="close" (click)="removeFromList(myWeather.id)">×</span>
+        <img src="{{ myWeather.icon }}" />
+      </div>
+    </div>
+  </div>
+</div>
+<hr />

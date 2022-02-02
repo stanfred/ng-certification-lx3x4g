@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        5-day forecast for City {{ cityName }} ({{ zipCode }})
+      </h3>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let foreCast of zipCodeForeCast">
+        {{ foreCast.date | date: 'EEEE' }}: {{ foreCast.condition }} - Min:
+        {{ foreCast.minTemp }} - Max: {{ foreCast.maxTemp }}
+        <img class="icon" src="{{ foreCast.icon }}" />
+      </li>
+    </ul>
+  </div>
+  <button
+    class="btn btn-success"
+    tabindex="0"
+    id="mainPageBtn"
+    [routerLink]="['/']"
+  >
+    &lt; Back to main page
+  </button>
+</div>
